@@ -5,6 +5,8 @@
         <attr name="smsp_typeface" format="string" />
         <attr name="smsp_baseColor" format="color|reference" />
         <attr name="smsp_highlightColor" format="color|reference" />
+        <attr name="smsp_searchIconColor" format="color|reference" />
+        <attr name="smsp_searchClearColor" format="color|reference" />
 
         <attr name="smsp_itemView" format="reference" />
         <attr name="smsp_dropdownView" format="reference" />
