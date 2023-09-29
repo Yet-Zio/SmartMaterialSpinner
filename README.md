@@ -1,4 +1,11 @@
 # SmartMaterialSpinner 
+
+Modified from https://github.com/Chivorns/SmartMaterialSpinner and thanks to Chivorns
+
+The Changes I did
+-----------------------
+- Added attributes to change search icon color and search clear icon color
+
 ![current](https://api.bintray.com/packages/chivorn/maven/smartmaterialspinner/images/download.svg) 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
