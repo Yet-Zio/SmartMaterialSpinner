@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ import com.chivorn.smartmaterialspinner.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
+
+import yetzio.yetcalc.R;
 
 public class SearchableSpinnerDialog<T> extends DialogFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
     private static final String TAG = SearchableSpinnerDialog.class.getSimpleName();
@@ -61,6 +64,9 @@ public class SearchableSpinnerDialog<T> extends DialogFragment implements Search
     private int searchBackgroundColor;
     private Drawable searchBackgroundDrawable;
     private int searchHintColor;
+    private int searchIconColor;
+
+    private int searchClearColor;
     private int searchTextColor;
     private int searchFilterColor;
 
@@ -282,6 +288,16 @@ public class SearchableSpinnerDialog<T> extends DialogFragment implements Search
     }
 
     private void initSearchBody() {
+        // set search icon color
+        ImageView searchIcon = (ImageView)searchView.findViewById(androidx.appcompat.R.id.search_button);
+        ImageView searchmagIcon = (ImageView)searchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
+        searchIcon.setColorFilter(searchIconColor);
+        searchmagIcon.setColorFilter(searchIconColor);
+
+        // set search clear color
+        ImageView searchClose = searchView.findViewById(androidx.appcompat.R.id.search_close_btn);
+        searchClose.setColorFilter(searchClearColor);
+
         if (searchHint != null) {
             searchView.setQueryHint(searchHint);
         }
@@ -441,6 +457,14 @@ public class SearchableSpinnerDialog<T> extends DialogFragment implements Search
 
     public void setSearchHintColor(int color) {
         searchHintColor = color;
+    }
+
+    public void setSearchIconColor(int color){
+        searchIconColor = color;
+    }
+
+    public void setSearchClearColor(int color){
+        searchClearColor = color;
     }
 
     public void setSearchListItemColor(int searchListItemColor) {

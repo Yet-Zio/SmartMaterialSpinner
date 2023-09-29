@@ -56,6 +56,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import yetzio.yetcalc.R;
+
 public class SmartMaterialSpinner<T> extends AppCompatSpinner implements AdapterView.OnItemSelectedListener, ValueAnimator.AnimatorUpdateListener, SearchableSpinnerDialog.OnSearchDialogEventListener<T>, Serializable {
     public static final int DEFAULT_ARROW_WIDTH_DP = 10;
     private static final String TAG = SmartMaterialSpinner.class.getSimpleName();
@@ -155,6 +157,8 @@ public class SmartMaterialSpinner<T> extends AppCompatSpinner implements Adapter
     //AttributeSet
     private int baseColor;
     private int highlightColor;
+    private int searchIconColor;
+    private int searchClearColor;
     private float errorTextSize;
     private int errorTextColor;
     private int disabledColor;
@@ -255,7 +259,7 @@ public class SmartMaterialSpinner<T> extends AppCompatSpinner implements Adapter
     }
 
     private void initAttributes(Context context, AttributeSet attrs) {
-        TypedArray defaultArray = context.obtainStyledAttributes(new int[]{R.attr.colorControlNormal, R.attr.colorAccent});
+        TypedArray defaultArray = context.obtainStyledAttributes(new int[]{android.R.attr.colorControlNormal, android.R.attr.colorAccent});
         int defaultBaseColor = ContextCompat.getColor(context, R.color.smsp_base_color); // defaultArray.getColor(1, 0);
         int defaultHighlightColor = ContextCompat.getColor(context, R.color.smsp_base_color);
         int defaultErrorColor = ContextCompat.getColor(context, R.color.smsp_error_color);
@@ -327,6 +331,8 @@ public class SmartMaterialSpinner<T> extends AppCompatSpinner implements Adapter
             setSearchHeaderBackgroundColor(typedArray.getColor(R.styleable.SmartMaterialSpinner_smsp_searchHeaderBackgroundColor, ContextCompat.getColor(context, R.color.smsp_search_header_background)));
         }
         searchHint = typedArray.getString(R.styleable.SmartMaterialSpinner_smsp_searchHint);
+        searchIconColor = typedArray.getColor(R.styleable.SmartMaterialSpinner_smsp_searchIconColor, defaultHighlightColor);
+        searchClearColor = typedArray.getColor(R.styleable.SmartMaterialSpinner_smsp_searchClearColor, defaultHighlightColor);
         searchHintColor = typedArray.getColor(R.styleable.SmartMaterialSpinner_smsp_searchHintColor, 0);
         searchTextColor = typedArray.getColor(R.styleable.SmartMaterialSpinner_smsp_searchTextColor, 0);
         searchFilterColor = typedArray.getColor(R.styleable.SmartMaterialSpinner_smsp_searchFilterColor, ContextCompat.getColor(context, R.color.smsp_search_filter_color));
@@ -369,6 +375,8 @@ public class SmartMaterialSpinner<T> extends AppCompatSpinner implements Adapter
         setSearchListItemColor(itemListColor);
         setSelectedSearchItemColor(selectedItemListColor);
         setSearchHintColor(searchHintColor);
+        setSearchIconColor(searchIconColor);
+        setSearchClearColor(searchClearColor);
         setSearchTextColor(searchTextColor);
         setSearchFilterColor(searchFilterColor);
         setSearchDropdownView(searchDropdownView);
@@ -1740,6 +1748,22 @@ public class SmartMaterialSpinner<T> extends AppCompatSpinner implements Adapter
         this.searchHintColor = color;
         if (searchableSpinnerDialog != null) {
             searchableSpinnerDialog.setSearchHintColor(color);
+        }
+        invalidate();
+    }
+
+    public void setSearchIconColor(int color){
+        this.searchIconColor = color;
+        if(searchableSpinnerDialog != null){
+            searchableSpinnerDialog.setSearchIconColor(color);
+        }
+        invalidate();
+    }
+
+    public void setSearchClearColor(int color){
+        this.searchClearColor = color;
+        if(searchableSpinnerDialog != null){
+            searchableSpinnerDialog.setSearchClearColor(color);
         }
         invalidate();
     }
