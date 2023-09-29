@@ -38,8 +38,6 @@ import com.chivorn.smartmaterialspinner.util.StringUtils;
 import java.io.Serializable;
 import java.util.List;
 
-import yetzio.yetcalc.R;
-
 public class SearchableSpinnerDialog<T> extends DialogFragment implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
     private static final String TAG = SearchableSpinnerDialog.class.getSimpleName();
     private static final String INSTANCE_LIST_ITEMS = "ListItems";
